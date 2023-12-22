@@ -1,4 +1,4 @@
-name: auto-minor-release
+name: auto-palmhill-release
 
 on:
   workflow_run:
