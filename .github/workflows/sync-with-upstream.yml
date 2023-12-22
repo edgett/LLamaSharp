@@ -1,0 +1,37 @@
+name: Sync Fork with Upstream
+
+on:
+  schedule:
+    # This schedule runs once a day. You can adjust it as needed.
+    - cron: '0 0 * * *'
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0  # Fetch all history for all branches and tags
+
+      - name: Configure Git
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "edgett@palmhillai.com"
+
+      - name: Add upstream remote
+        run: |
+          git remote add upstream https://github.com/SciSharp/LLamaSharp.git
+
+      - name: Fetch changes from upstream
+        run: |
+          git fetch upstream
+          git checkout main
+          git merge upstream/main
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: main
