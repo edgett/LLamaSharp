@@ -30,7 +30,7 @@ jobs:
     
     - name: Update Package Names
       run: |
-        find . -name '*.csproj' -exec sed -i 's/<PackageId>LLamaSharp<\/PackageId>/<PackageId>PalmHill.LLamaSharp<\/PackageId>/g' {} \;
+        find . -name '*.csproj' -exec sed -i 's/<PackageId>\(.*\)LLamaSharp<\/PackageId>/<PackageId>\1PalmHill.LLamaSharp<\/PackageId>/g' {} \;
     
     - name: Build solution
       run: |
