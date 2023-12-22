@@ -69,14 +69,18 @@ dotnet pack ./LLama/LLamaSharp.csproj -c Release -o ./temp/ /p:PackageVersion=$u
 dotnet pack ./LLama.SemanticKernel/LLamaSharp.SemanticKernel.csproj -c Release -o ./temp/ /p:PackageVersion=$updated_version /p:Version=$updated_version;
 dotnet pack ./LLama.KernelMemory/LLamaSharp.KernelMemory.csproj -c Release -o ./temp/ /p:PackageVersion=$updated_version /p:Version=$updated_version;
 
-# Update package name in .nuspec files specifically within <id> tags
-sed -i 's/<id>\(.*\)LLamaSharp\([^<]*\)<\/id>/<id>\1PalmHill.LLamaSharp\2<\/id>/g' ./temp/*.nuspec
+
        
 
 
 
 # pack the backends
 cd temp
+
+# Update package name in .nuspec files specifically within <id> tags
+sed -i 's/<id>\(.*\)LLamaSharp\([^<]*\)<\/id>/<id>\1PalmHill.LLamaSharp\2<\/id>/g' ./temp/*.nuspec
+
+
 nuget pack LLamaSharp.Backend.Cpu.nuspec -version $updated_version
 nuget pack LLamaSharp.Backend.Cuda11.nuspec -version $updated_version
 nuget pack LLamaSharp.Backend.Cuda12.nuspec -version $updated_version
