@@ -2,7 +2,7 @@ name: auto-minor-release
 
 on:
   workflow_run:
-    workflows: ["release-minor-trigger"]
+    workflows: ["release-main-palmhill-trigger"]
     types:
       - completed
 
