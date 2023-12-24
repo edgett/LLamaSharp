@@ -2,9 +2,9 @@ name: Update Binaries
 
 on:
   workflow_dispatch:
-    inputs: {}
-  push:
-    branches: [cron_job]
+  #   inputs: {}
+  # push:
+  #   branches: [cron_job]
   #schedule:
   #  - cron: "22 22 * * 2"
 
