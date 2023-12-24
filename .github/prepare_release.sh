@@ -78,8 +78,7 @@ dotnet pack ./LLama.KernelMemory/LLamaSharp.KernelMemory.csproj -c Release -o ./
 cd temp
 
 # Update package name in .nuspec files specifically within <id> tags
-sed -i 's/<id>\(.*\)LLamaSharp\([^<]*\)<\/id>/<id>\1PalmHill.LLamaSharp\2<\/id>/g' ./temp/*.nuspec
-
+find . -name '*.nuspec' -exec sed -i 's/<id>\(.*\)LLamaSharp\([^<]*\)<\/id>/<id>\1PalmHill.LLamaSharp\2<\/id>/g' {} \;
 
 nuget pack LLamaSharp.Backend.Cpu.nuspec -version $updated_version
 nuget pack LLamaSharp.Backend.Cuda11.nuspec -version $updated_version
